@@ -1,1 +1,1 @@
-
+let percentage = 0;

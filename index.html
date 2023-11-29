@@ -26,26 +26,28 @@
         <div class="bill-container">
           <div class="bill">
             <h2>Bill</h2>
-
-            <fieldset class="dollar-unit">
-              <img src="images/icon-dollar.svg" alt="dollar-sign" />
-              <p>142.5</p>
+          <fieldset class="dollar-unit">
+           <img src="images/icon-dollar.svg" alt="dollar-sign" />
+              <input value="142.5"></input>
             </fieldset>
           </div>
           <div class="select">
             <h2>Select tip %</h2>
-            <button class="btn_5" type="button">5%</button>
-            <button class="btn_10" type="button">10%</button>
-            <button class="btn_15" type="button">15%</button>
-            <button class="btn_25" type="button">25%</button>
-            <button class="btn_50" type="button">50%</button>
-            <button class="custom" type="button">Custom</button>
+            <button class="btn_5" type="button" data-percent="5" onclick="percentage += 0.05;
+            console.log(`the percentage: ${percentage}`)">5%</button>
+            <button class="btn_10" type="button" data-percent="10">10%</button>
+            <button class="btn_15" type="button" data-percent="15">15%</button>
+            <button class="btn_25" type="button" data-percent="25">25%</button>
+            <button class="btn_50" type="button" data-percent="50">50%</button>
+            <button class="custom" type="button" data-percent="custom" onclick="percentage = 0;
+            console.log(`custom reset`);
+            console.log(`custom: ${percentage}`)">Custom</button>
           </div>
           <div class="people">
             <h2>Number of people</h2>
             <fieldset class="dollar-unit">
               <img src="images/icon-person.svg" alt="person-icon" />
-              <p>5</p>
+              <input value="5"></input>
             </fieldset>
           </div>
         </div>
