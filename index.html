@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
     <link rel="stylesheet" href="styles.css" />
-    <script src="scrip.js"></script>
+    <script src="script.js"></script>
 
     <title>Tip calculator app</title>
   </head>
@@ -28,7 +28,7 @@
             <h2>Bill</h2>
           <fieldset class="dollar-unit">
            <img src="images/icon-dollar.svg" alt="dollar-sign" />
-              <input value=" " class="dollar-value"></input>
+              <input class="dollar-value"></input>
             </fieldset>
           </div>
           <div class="select">
@@ -44,21 +44,21 @@
             <h2>Number of people</h2>
             <fieldset class="dollar-unit">
               <img src="images/icon-person.svg" alt="person-icon" />
-              <input value=" " class="number-value"></input>
+              <input id="num-of-people" onchange="onInputPeopleChange()" class="number-value"></input>
             </fieldset>
           </div>
         </div>
         <div class="tip-container">
           <div class="tip-amount">
             <h2>Tip Amount <br /><span>/person</span></h2>
-            <p class="tip-display"></p>
+            <p class="tip-display">0.00</p>
           </div>
           <div class="total">
             <h2>Total <br /><span>/person</span></h2>
-            <p class="person-display"></p>
+            <p class="person-display">0.00</p>
           </div>
           <div class="reset_btn">
-            <button type="button" >RESET</button>
+            <button type="button" onclick="onReset()" >RESET</button>
           </div>
         </div>
       </div>
