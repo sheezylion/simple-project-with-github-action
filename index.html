@@ -28,40 +28,37 @@
             <h2>Bill</h2>
           <fieldset class="dollar-unit">
            <img src="images/icon-dollar.svg" alt="dollar-sign" />
-              <input value="142.5"></input>
+              <input value=" " class="dollar-value"></input>
             </fieldset>
           </div>
           <div class="select">
             <h2>Select tip %</h2>
-            <button class="btn_5" type="button" data-percent="5" onclick="percentage += 0.05;
-            console.log(`the percentage: ${percentage}`)">5%</button>
-            <button class="btn_10" type="button" data-percent="10">10%</button>
-            <button class="btn_15" type="button" data-percent="15">15%</button>
-            <button class="btn_25" type="button" data-percent="25">25%</button>
-            <button class="btn_50" type="button" data-percent="50">50%</button>
-            <button class="custom" type="button" data-percent="custom" onclick="percentage = 0;
-            console.log(`custom reset`);
-            console.log(`custom: ${percentage}`)">Custom</button>
+            <button class="btn_5" type="button" data-percent="5" onclick="fivePercent()">5%</button>
+            <button class="btn_10" type="button" data-percent="10" onclick="tenPercent()">10%</button>
+            <button class="btn_15" type="button" data-percent="15" onclick="fifteenPercent()">15%</button>
+            <button class="btn_25" type="button" data-percent="25" onclick="twentyfivePercent()">25%</button>
+            <button class="btn_50" type="button" data-percent="50" onclick="fiftyPercent()">50%</button>
+            <button class="custom" type="button" data-percent="custom">Custom</button>
           </div>
           <div class="people">
             <h2>Number of people</h2>
             <fieldset class="dollar-unit">
               <img src="images/icon-person.svg" alt="person-icon" />
-              <input value="5"></input>
+              <input value=" " class="number-value"></input>
             </fieldset>
           </div>
         </div>
         <div class="tip-container">
           <div class="tip-amount">
             <h2>Tip Amount <br /><span>/person</span></h2>
-            <p>$4.27</p>
+            <p class="tip-display"></p>
           </div>
           <div class="total">
             <h2>Total <br /><span>/person</span></h2>
-            <p>$32.79</p>
+            <p class="person-display"></p>
           </div>
           <div class="reset_btn">
-            <button type="button">RESET</button>
+            <button type="button" >RESET</button>
           </div>
         </div>
       </div>
