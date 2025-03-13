@@ -10,43 +10,33 @@ In this project, we'll use GitHub Actions as our CI tool to check for syntax err
 
 - How to set up GitHub Actions in a project.
 
-- How to create a simple HTML/CSS form page.
+- How to create a function in python.
 
 - How to configure a GitHub Actions workflow to run a syntax check.
 
 ## Project Overview
 
-We'll create a basic HTML form and use a GitHub Actions workflow to check for syntax errors whenever we push changes. The workflow will be defined in a .yml file inside the .github/workflows/ directory.
+We'll create a simple python function and use a GitHub Actions workflow to check for syntax errors whenever we push changes. The workflow will be defined in a .yml file inside the .github/workflows/ directory.
 
 ### Steps:
 
-### 1. Create the index.html File
+### 1. Create the function.py File
 
-Inside the repository, create an index.html file and add the following basic form code from w3school:
+Inside the repository, create a function.py file and add the following basic form code from w3school:
 
 ```
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Form</title>
-</head>
-<body>
-<h2>The name Attribute</h2>
+def addition(a, b):
+  return a + b
 
-<form action="/action_page.php">
-  <label for="fname">First name:</label><br>
-  <input type="text" id="fname" value="John"><br><br>
-  <input type="submit" value="Submit">
-</form> 
+def subtraction(a, b):
+  return a - b
 
-<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+def multiplication(a, b):
+  return a * b
 
-<p>Notice that the value of the "First name" field will not be submitted, because the input element does not have a name attribute.</p>
-
-</body>
-</html>
+print(addition(4, 5))
+print(subtraction(6, 9))
+print(multiplication(3, 7))
 ```
 
 ## How GitHub Actions Work 
@@ -102,7 +92,7 @@ jobs:
 4️ runs-on: - Specifies the OS (Ubuntu) where the job will run.
 5️ steps: - The individual tasks within the job. Each step is executed in order.
 6️ uses: - Calls a prebuilt action from the GitHub Marketplace.
-7️ run: - Runs a shell command (in this case, a linter to check HTML syntax).
+7️ run: - Runs a shell command (in this case, a linter to check python syntax).
 
 Now that we understand how GitHub Actions work, let's move forward and create our workflow!
 
@@ -117,29 +107,35 @@ mkdir -p .github/workflows
 Inside this directory, create a file named basic-github-action.yml and add the following content:
 
 ```
-name: HTML Linter CI
+ame: Python Linter CI
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   lint:
+    name: Python Lint Check
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install HTML Linter
-        run: npm install -g htmlhint
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x" # Replace with the Python version you need
 
-      - name: Run Linter
-        run: htmlhint index.html
+      - name: Install flake8
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8
+
+      - name: Run flake8 Linter
+        run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
 ```
 
 ### 3. Commit and Push Changes
