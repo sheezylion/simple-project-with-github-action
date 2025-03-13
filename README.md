@@ -20,13 +20,36 @@ We'll create a basic HTML form and use a GitHub Actions workflow to check for sy
 
 ### Steps:
 
-### 1. Clone the Repository
+### 1. Create the index.html File
 
-If you haven't already, clone this repository to your local machine:
+Inside the repository, create an index.html file and add the following basic form code from w3school:
 
 ```
-git clone https://github.com/your-username/repository-name.git
-cd repository-name
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form</title>
+</head>
+<body>
+<h2>The name Attribute</h2>
+
+<form action="/action_page.php">
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" value="John"><br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+
+<p>Notice that the value of the "First name" field will not be submitted, because the input element does not have a name attribute.</p>
+
+</body>
+</html>
 ```
+
+
+
 
 
