@@ -52,7 +52,7 @@ Inside the repository, create an index.html file and add the following basic for
 ## How GitHub Actions Work 
 Before setting up our GitHub Action, let's first understand how it works. GitHub Actions help us automate tasks like running tests, checking for syntax errors, and deploying our projects. The structure of GitHub Actions is built around three key concepts:
 
-#### Events (Triggers)
+### Events (Triggers)
 Events are what kickstart a workflow. Think of them as the triggers that tell GitHub, "Hey, it's time to run this process!"
 Some common events include:
 - push → Runs the workflow when new code is pushed to the repository.
@@ -60,11 +60,51 @@ Some common events include:
 - workflow_dispatch → A manual trigger (you run it yourself).
 We define these events in our workflow file using on:
 
-#### Workflows
+### Workflows
 A workflow is a process that runs automatically when an event occurs. Each workflow lives inside a .github/workflows/ directory in the repo and is written in a .yml file.
 A workflow consists of jobs that run a series of steps to achieve a goal.
 
+### Jobs & Actions
+A job is a group of steps that runs on a runner (a virtual machine like Ubuntu). Each job consists of steps, which are instructions for what needs to be done.
 
+Steps can include:
+- Checking out the code (using actions from the GitHub marketplace)
+- Installing dependencies
+- Running tests
+- Deploying the application
+
+Jobs can run independently or depend on each other.
+
+## Understanding a Basic GitHub Actions File
+Let’s break down a simple GitHub Actions .yml file.
+
+```
+name: Basic Syntax Check  
+
+on: push  # This runs when code is pushed  
+
+jobs:  
+  lint-check:  
+    runs-on: ubuntu-latest  # The OS the job runs on  
+
+    steps:  
+      - name: Checkout Repository  
+        uses: actions/checkout@v3  # Pulls the latest code  
+
+      - name: Run Linter  
+        run: npx htmlhint "**/*.html"  # Checks for syntax errors in HTML
+```
+
+### Breaking it Down:
+1️ name: - The name of our workflow.
+2️ on: - Specifies the event that triggers the workflow (push).
+3️ jobs: - Defines the tasks our workflow will perform.
+4️ runs-on: - Specifies the OS (Ubuntu) where the job will run.
+5️ steps: - The individual tasks within the job. Each step is executed in order.
+6️ uses: - Calls a prebuilt action from the GitHub Marketplace.
+7️ run: - Runs a shell command (in this case, a linter to check HTML syntax).
+
+Now that we understand how GitHub Actions work, let's move forward and create our workflow!
 
 ### 2. Create the GitHub Actions Workflow
 
