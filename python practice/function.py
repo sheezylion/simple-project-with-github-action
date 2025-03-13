@@ -4,7 +4,7 @@ def addition(a, b):
 def subtraction(a, b):
   return a - b
 
-defi multiplication(a, b):
+def multiplication(a, b):
   return a * b
 
 print(addition(4, 5))
