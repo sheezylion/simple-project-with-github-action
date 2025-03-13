@@ -49,7 +49,75 @@ Inside the repository, create an index.html file and add the following basic for
 </html>
 ```
 
+## How GitHub Actions Work 
+Before setting up our GitHub Action, let's first understand how it works. GitHub Actions help us automate tasks like running tests, checking for syntax errors, and deploying our projects. The structure of GitHub Actions is built around three key concepts:
+
+#### Events (Triggers)
+Events are what kickstart a workflow. Think of them as the triggers that tell GitHub, "Hey, it's time to run this process!"
+Some common events include:
+- push → Runs the workflow when new code is pushed to the repository.
+- pull_request → Runs when someone creates a pull request.
+- workflow_dispatch → A manual trigger (you run it yourself).
+We define these events in our workflow file using on:
+
+#### Workflows
+A workflow is a process that runs automatically when an event occurs. Each workflow lives inside a .github/workflows/ directory in the repo and is written in a .yml file.
+A workflow consists of jobs that run a series of steps to achieve a goal.
 
 
 
+### 2. Create the GitHub Actions Workflow
+
+Now, let's create the directory where our workflow file will live.
+
+```
+mkdir -p .github/workflows
+```
+
+Inside this directory, create a file named basic-github-action.yml and add the following content:
+
+```
+name: HTML Linter CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install HTML Linter
+        run: npm install -g htmlhint
+
+      - name: Run Linter
+        run: htmlhint index.html
+```
+
+### 3. Commit and Push Changes
+
+Now that we have everything set up, commit and push your changes to trigger the GitHub Action.
+
+```
+git add .
+git commit -m "Added HTML form and GitHub Actions workflow"
+git push origin main
+```
+
+### 4. Check GitHub Actions
+
+Head over to your GitHub repository > Actions Tab to see the workflow in action. If there are syntax errors in the index.html file, the workflow will catch them.
+
+
+#### Conclusion
+
+You've just set up a basic CI pipeline using GitHub Actions! Now, every time you push changes, your code is automatically checked for syntax errors. This workflow is a stepping stone towards automated testing and deployment in real-world projects. Note: You can extend this by adding CSS linters to check for css syntax error or integrating automated tests under jobs.
 
