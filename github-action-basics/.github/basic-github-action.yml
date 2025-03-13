@@ -1,9 +1,12 @@
-name: Lint HTML
+name: HTML Linter CI
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
+    branches:
+      - main
 
 jobs:
   lint:
@@ -13,9 +16,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install linters
-        run: |
-          npm install -g htmlhint stylelint
+      - name: Install HTML Linter
+        run: npm install -g htmlhint
 
-      - name: Lint HTML files
+      - name: Run Linter
         run: htmlhint "**/*.html"
